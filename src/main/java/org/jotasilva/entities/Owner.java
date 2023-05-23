@@ -1,6 +1,8 @@
 package org.jotasilva.entities;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Owner {
     private Long id;
@@ -112,5 +114,13 @@ public class Owner {
         int verificationDigit2 = (rest < 2) ? 0 : 11 - rest;
 
         return (verificationDigit1 == digit1 && verificationDigit2 == digit2);
+    }
+
+    public Boolean validateCorporateName(){
+        String regex = "^[A-Za-z0-9.&\\sáÁâÂéÉêÊíÍóÓôÔúÚãÃõÕçÇ]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(this.corporateName);
+
+        return matcher.matches();
     }
 }

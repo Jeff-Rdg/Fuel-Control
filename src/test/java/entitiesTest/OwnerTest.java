@@ -31,4 +31,23 @@ public class OwnerTest {
 
         Assertions.assertFalse(result);
     }
+
+    // validar razao social
+    @Test
+    void validateCorporateName_with_valid_name(){
+        Owner owner = new Owner("58577114000189", "Bento e Kauê Locações de Automóveis Ltda");
+
+        Boolean result = owner.validateCorporateName();
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    void validateCorporateName_with_invalid_name(){
+        Owner owner = new Owner("58577114000189", "Bento! e Kauê Locações de Automóveis Ltda");
+
+        Boolean result = owner.validateCorporateName();
+
+        Assertions.assertFalse(result);
+    }
 }
