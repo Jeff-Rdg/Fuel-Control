@@ -9,7 +9,7 @@ public class Tank {
     private Double fuelQuantity = 0.0;
     private List<FuelTank> supplies = new ArrayList<>();
 
-    private static Long next_id;
+    private static Long next_id = 0L;
     public static Long getNextId(){
         return Tank.next_id++;
     }

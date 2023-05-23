@@ -6,7 +6,7 @@ public class Owner {
     private Long id;
     private String cnpj;
     private String corporateName;
-    private static Long next_id;
+    private static Long next_id = 0L;
 
     public static Long getNextId(){
         return Owner.next_id++;

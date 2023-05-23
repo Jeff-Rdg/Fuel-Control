@@ -8,7 +8,7 @@ public class Fuel {
     private Double quantity;
     private String invoiceNumber;
 
-    private static Long next_id;
+    private static Long next_id = 0L;
 
     public static Long getNextId() {
         return Fuel.next_id++;
