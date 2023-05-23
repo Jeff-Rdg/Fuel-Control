@@ -1,7 +1,6 @@
-package servicesTest;
+package entitiesTest;
 
 import org.jotasilva.entities.Fuel;
-import org.jotasilva.services.FuelService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +11,18 @@ class FuelTest {
     void validateInvoiceNumber_With_parameters_invalids() {
         // preparação
         String invoiceNumber = "aa-bbbbbbbb";
+        Fuel fuelTest = new Fuel(4.24, 5000.00, invoiceNumber);
+        // execução
+        boolean result = fuelTest.validateInvoiceNumber(invoiceNumber);
+        // verificação
+        Assertions.assertFalse(result);
+
+    }
+
+    @Test
+    void validateInvoiceNumber_With_parameters_invoiceNumber_with_numbers_and_letters() {
+        // preparação
+        String invoiceNumber = "12a-123456789";
         Fuel fuelTest = new Fuel(4.24, 5000.00, invoiceNumber);
         // execução
         boolean result = fuelTest.validateInvoiceNumber(invoiceNumber);

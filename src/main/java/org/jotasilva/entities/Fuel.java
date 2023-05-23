@@ -64,6 +64,7 @@ public class Fuel {
         return Objects.hash(id);
     }
 
+    // métodos de validação de atributos
     public Boolean fuelValid(){
         return isPositive(unitPrice) && isPositive(quantity) && validateInvoiceNumber(invoiceNumber);
     }
