@@ -65,11 +65,11 @@ public class Fuel {
     }
 
     // métodos de validação de atributos
-    public Boolean fuelValid(){
+    public static Boolean fuelValid(Double unitPrice, Double quantity, String invoiceNumber){
         return isPositive(unitPrice) && isPositive(quantity) && validateInvoiceNumber(invoiceNumber);
     }
 
-    public Boolean validateInvoiceNumber(String invoiceNumber){
+    public static Boolean validateInvoiceNumber(String invoiceNumber){
         String regex = "\\d{3}-\\d{9}";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(invoiceNumber);
@@ -77,7 +77,7 @@ public class Fuel {
         return matcher.matches();
     }
 
-    public Boolean isPositive(Double value){
+    public static Boolean isPositive(Double value){
         return value > 0;
     }
 }

@@ -11,9 +11,8 @@ class FuelTest {
     void validateInvoiceNumber_With_parameters_invalids() {
         // preparação
         String invoiceNumber = "aa-bbbbbbbb";
-        Fuel fuelTest = new Fuel(4.24, 5000.00, invoiceNumber);
         // execução
-        boolean result = fuelTest.validateInvoiceNumber(invoiceNumber);
+        boolean result = Fuel.validateInvoiceNumber(invoiceNumber);
         // verificação
         Assertions.assertFalse(result);
 
@@ -23,9 +22,8 @@ class FuelTest {
     void validateInvoiceNumber_With_parameters_invoiceNumber_with_numbers_and_letters() {
         // preparação
         String invoiceNumber = "12a-123456789";
-        Fuel fuelTest = new Fuel(4.24, 5000.00, invoiceNumber);
         // execução
-        boolean result = fuelTest.validateInvoiceNumber(invoiceNumber);
+        boolean result = Fuel.validateInvoiceNumber(invoiceNumber);
         // verificação
         Assertions.assertFalse(result);
 
@@ -35,9 +33,8 @@ class FuelTest {
     void validateInvoiceNumber_With_parameters_valids() {
         // preparação
         String invoiceNumber = "123-123456789";
-        Fuel fuelTest = new Fuel(4.24, 5000.00, invoiceNumber);
         // execução
-        boolean result = fuelTest.validateInvoiceNumber(invoiceNumber);
+        boolean result = Fuel.validateInvoiceNumber(invoiceNumber);
         // verificação
         Assertions.assertTrue(result);
 
@@ -47,10 +44,9 @@ class FuelTest {
     @Test
     void isPositive_with_numbers_negatives() {
         Double unitPrice = -2.0;
-        String invoiceNumber = "123-123456789";
-        Fuel fuelTest = new Fuel(unitPrice, -5000.00, invoiceNumber);
+        Double quantity = -5000.00;
 
-        boolean result = fuelTest.isPositive(fuelTest.getUnitPrice()) && fuelTest.isPositive(fuelTest.getQuantity());
+        boolean result = Fuel.isPositive(unitPrice) && Fuel.isPositive(quantity);
 
         Assertions.assertFalse(result);
     }
@@ -58,10 +54,9 @@ class FuelTest {
     @Test
     void isPositive_with_numbers_positives() {
         Double unitPrice = 2.0;
-        String invoiceNumber = "123-123456789";
-        Fuel fuelTest = new Fuel(unitPrice, 5000.00, invoiceNumber);
+        Double quantity = 5000.00;
 
-        boolean result = fuelTest.isPositive(fuelTest.getUnitPrice()) && fuelTest.isPositive(fuelTest.getQuantity());
+        boolean result = Fuel.isPositive(unitPrice) && Fuel.isPositive(quantity);
 
         Assertions.assertTrue(result);
     }
@@ -72,9 +67,8 @@ class FuelTest {
         Double unitPrice = 2.0;
         Double quantity = 5000.00;
         String invoiceNumber = "123-123456789";
-        Fuel fuelTest = new Fuel(unitPrice, quantity, invoiceNumber);
 
-        boolean result = fuelTest.fuelValid();
+        boolean result = Fuel.fuelValid(unitPrice, quantity, invoiceNumber);
 
         Assertions.assertTrue(result);
     }
@@ -84,9 +78,8 @@ class FuelTest {
         Double unitPrice = -2.0;
         Double quantity = -5000.00;
         String invoiceNumber = "123-12345678";
-        Fuel fuelTest = new Fuel(unitPrice, quantity, invoiceNumber);
 
-        boolean result = fuelTest.fuelValid();
+        boolean result = Fuel.fuelValid(unitPrice, quantity, invoiceNumber);
 
         Assertions.assertFalse(result);
     }
