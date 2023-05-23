@@ -9,3 +9,10 @@ m
 =src/main/java/org/jotasilva/connection/ConnectionFactory.java,d\f\df138993c69583f45a7b0fc1bea0a04c9a0f3d1a
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+a
+1src/main/java/org/jotasilva/entities/Vehicle.java,b\a\baf313fac1cb562d85159c028ce89caefc173c70
+e
+5src/main/java/org/jotasilva/entities/VehicleTank.java,b\d\bd7297846e12bf545de9b6dce8512b0ee34d966a
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
