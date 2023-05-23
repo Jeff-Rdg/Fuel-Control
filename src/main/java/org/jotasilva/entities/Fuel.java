@@ -1,6 +1,8 @@
 package org.jotasilva.entities;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Fuel {
     private Long id;
@@ -60,5 +62,21 @@ public class Fuel {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public Boolean fuelValid(){
+        return isPositive(unitPrice) && isPositive(quantity) && validateInvoiceNumber(invoiceNumber);
+    }
+
+    public Boolean validateInvoiceNumber(String invoiceNumber){
+        String regex = "\\d{3}-\\d{9}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(invoiceNumber);
+
+        return matcher.matches();
+    }
+
+    public Boolean isPositive(Double value){
+        return value > 0;
     }
 }
