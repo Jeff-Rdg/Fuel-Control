@@ -14,7 +14,7 @@ public class Tank {
         return Tank.next_id++;
     }
 
-    public Tank(Double capacity) {
+    private Tank(Double capacity) {
         this.id = getNextId();
         this.capacity = capacity;
     }
@@ -37,5 +37,18 @@ public class Tank {
 
     public void setFuelQuantity(Double fuelQuantity) {
         this.fuelQuantity = fuelQuantity;
+    }
+
+    public static Boolean isValidTank(Double capacity){
+        return capacity > 0.0 && capacity < 50000.00;
+    }
+
+    public static Tank create(Double capacity) throws IllegalArgumentException{
+        boolean isValid = isValidTank(capacity);
+        if(isValid){
+            return new Tank(capacity);
+        }else {
+            throw new IllegalArgumentException("Parâmetro inválido para criação do objeto.");
+        }
     }
 }
