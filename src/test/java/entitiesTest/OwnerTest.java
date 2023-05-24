@@ -4,10 +4,19 @@ import org.jotasilva.entities.Owner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class OwnerTest {
+class OwnerTest {
     @Test
     void validateCnpj_if_is_valid(){
         Owner owner = new Owner("58577114000189", "nome test");
+
+        Boolean result = owner.validateCnpj();
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    void validateCnpj_if_is_valid_with_numbers_repeat(){
+        Owner owner = new Owner("47.333.905/0001-47", "nome test");
 
         Boolean result = owner.validateCnpj();
 

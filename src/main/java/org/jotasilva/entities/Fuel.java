@@ -16,7 +16,7 @@ public class Fuel {
         return Fuel.next_id++;
     }
 
-    public Fuel(Double unitPrice, Double quantity, String invoiceNumber) {
+    private Fuel(Double unitPrice, Double quantity, String invoiceNumber) {
         this.id = getNextId();
         this.unitPrice = unitPrice;
         this.quantity = quantity;
@@ -65,11 +65,11 @@ public class Fuel {
     }
 
     // métodos de validação de atributos
-    public static Boolean fuelValid(Double unitPrice, Double quantity, String invoiceNumber){
+    public static Boolean fuelValid(Double unitPrice, Double quantity, String invoiceNumber) {
         return isPositive(unitPrice) && isPositive(quantity) && validateInvoiceNumber(invoiceNumber);
     }
 
-    public static Boolean validateInvoiceNumber(String invoiceNumber){
+    public static Boolean validateInvoiceNumber(String invoiceNumber) {
         String regex = "\\d{3}-\\d{9}";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(invoiceNumber);
@@ -77,7 +77,17 @@ public class Fuel {
         return matcher.matches();
     }
 
-    public static Boolean isPositive(Double value){
+    public static Boolean isPositive(Double value) {
         return value > 0;
+    }
+
+    public static Fuel create(Double unitPrice, Double quantity, String invoiceNumber) throws IllegalArgumentException {
+        boolean isFuelValid = fuelValid(unitPrice, quantity, invoiceNumber);
+
+        if (isFuelValid) {
+            return new Fuel(unitPrice, quantity, invoiceNumber);
+        } else {
+            throw new IllegalArgumentException("Parâmetros inválidos para criação do objeto. ");
+        }
     }
 }
