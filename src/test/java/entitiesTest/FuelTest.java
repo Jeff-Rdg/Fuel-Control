@@ -68,7 +68,7 @@ class FuelTest {
         Double quantity = 5000.00;
         String invoiceNumber = "123-123456789";
 
-        boolean result = Fuel.fuelValid(unitPrice, quantity, invoiceNumber);
+        boolean result = Fuel.isValidFuel(unitPrice, quantity, invoiceNumber);
 
         Assertions.assertTrue(result);
     }
@@ -79,7 +79,7 @@ class FuelTest {
         Double quantity = -5000.00;
         String invoiceNumber = "123-12345678";
 
-        boolean result = Fuel.fuelValid(unitPrice, quantity, invoiceNumber);
+        boolean result = Fuel.isValidFuel(unitPrice, quantity, invoiceNumber);
 
         Assertions.assertFalse(result);
     }
