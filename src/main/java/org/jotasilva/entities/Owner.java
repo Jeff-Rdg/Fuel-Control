@@ -14,7 +14,7 @@ public class Owner {
         return Owner.next_id++;
     }
 
-    public Owner(String cnpj, String corporateName) {
+    private Owner(String cnpj, String corporateName) {
         this.id = getNextId();
         this.cnpj = cnpj;
         this.corporateName = corporateName;
@@ -54,7 +54,7 @@ public class Owner {
     }
 
     // Métodos de validação
-    public Boolean validateCnpj() {
+    public static Boolean validateCnpj(String cnpj) {
         String validateCnpj = cnpj.replaceAll("[^0-9]", "");
         if (validateCnpj.length() != 14) {
             return false;
@@ -116,11 +116,25 @@ public class Owner {
         return (verificationDigit1 == digit1 && verificationDigit2 == digit2);
     }
 
-    public Boolean validateCorporateName(){
+    public static Boolean validateCorporateName(String corporateName) {
         String regex = "^[A-Za-z0-9.&\\sáÁâÂéÉêÊíÍóÓôÔúÚãÃõÕçÇ]+$";
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(this.corporateName);
+        Matcher matcher = pattern.matcher(corporateName);
 
         return matcher.matches();
+    }
+
+    public static Boolean isValidOwner(String cnpj, String corporateName){
+        return validateCnpj(cnpj) && validateCorporateName(corporateName);
+    }
+
+    public static Owner create(String cnpj, String corporateName) throws IllegalArgumentException {
+        boolean isValid = isValidOwner(cnpj, corporateName);
+
+        if (isValid) {
+            return new Owner(cnpj, corporateName);
+        } else {
+            throw new IllegalArgumentException("Parâmetros inválidos para criação do objeto. ");
+        }
     }
 }

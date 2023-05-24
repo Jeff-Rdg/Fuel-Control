@@ -65,7 +65,7 @@ public class Fuel {
     }
 
     // métodos de validação de atributos
-    public static Boolean fuelValid(Double unitPrice, Double quantity, String invoiceNumber) {
+    public static Boolean isValidFuel(Double unitPrice, Double quantity, String invoiceNumber) {
         return isPositive(unitPrice) && isPositive(quantity) && validateInvoiceNumber(invoiceNumber);
     }
 
@@ -82,9 +82,9 @@ public class Fuel {
     }
 
     public static Fuel create(Double unitPrice, Double quantity, String invoiceNumber) throws IllegalArgumentException {
-        boolean isFuelValid = fuelValid(unitPrice, quantity, invoiceNumber);
+        boolean isValid = isValidFuel(unitPrice, quantity, invoiceNumber);
 
-        if (isFuelValid) {
+        if (isValid) {
             return new Fuel(unitPrice, quantity, invoiceNumber);
         } else {
             throw new IllegalArgumentException("Parâmetros inválidos para criação do objeto. ");

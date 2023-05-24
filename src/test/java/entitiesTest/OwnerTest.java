@@ -6,56 +6,56 @@ import org.junit.jupiter.api.Test;
 
 class OwnerTest {
     @Test
-    void validateCnpj_if_is_valid(){
-        Owner owner = new Owner("58577114000189", "nome test");
+    void validateCnpj_if_is_valid() {
+        String cnpj = "58577114000189";
 
-        Boolean result = owner.validateCnpj();
-
-        Assertions.assertTrue(result);
-    }
-
-    @Test
-    void validateCnpj_if_is_valid_with_numbers_repeat(){
-        Owner owner = new Owner("47.333.905/0001-47", "nome test");
-
-        Boolean result = owner.validateCnpj();
+        Boolean result = Owner.validateCnpj(cnpj);
 
         Assertions.assertTrue(result);
     }
 
     @Test
-    void validateCnpj_with_invalid_caracteres(){
-        Owner owner = new Owner("aaaaaaaaaaaaaa", "nome test");
+    void validateCnpj_if_is_valid_with_numbers_repeat() {
+        String cnpj = "47.333.905/0001-47";
 
-        Boolean result = owner.validateCnpj();
+        Boolean result = Owner.validateCnpj(cnpj);
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    void validateCnpj_with_invalid_caracteres() {
+        String cnpj = "aaaaaaaaaaaaaa";
+
+        Boolean result = Owner.validateCnpj(cnpj);
 
         Assertions.assertFalse(result);
     }
 
     @Test
-    void validateCnpj_with_invalid_numbers_equals(){
-        Owner owner = new Owner("11111111111111", "nome test");
+    void validateCnpj_with_invalid_numbers_equals() {
+        String cnpj = "11111111111111";
 
-        Boolean result = owner.validateCnpj();
+        Boolean result = Owner.validateCnpj(cnpj);
 
         Assertions.assertFalse(result);
     }
 
     // validar razao social
     @Test
-    void validateCorporateName_with_valid_name(){
-        Owner owner = new Owner("58577114000189", "Bento e Kauê Locações de Automóveis Ltda");
+    void validateCorporateName_with_valid_name() {
+        String corporateName = "Bento e Kauê Locações de Automóveis Ltda";
 
-        Boolean result = owner.validateCorporateName();
+        Boolean result = Owner.validateCorporateName(corporateName);
 
         Assertions.assertTrue(result);
     }
 
     @Test
-    void validateCorporateName_with_invalid_name(){
-        Owner owner = new Owner("58577114000189", "Bento! e Kauê Locações de Automóveis Ltda");
+    void validateCorporateName_with_invalid_name() {
+        String corporateName = "Bento! e Kauê Locações de Automóveis Ltda";
 
-        Boolean result = owner.validateCorporateName();
+        Boolean result = Owner.validateCorporateName(corporateName);
 
         Assertions.assertFalse(result);
     }
