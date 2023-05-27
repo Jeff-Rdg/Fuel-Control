@@ -3,8 +3,6 @@ package org.jotasilva.entities;
 import org.jotasilva.validator.OwnerValidator;
 
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Owner {
     private Long id;
@@ -12,14 +10,15 @@ public class Owner {
     private String corporateName;
     private static Long next_id = 0L;
 
-    public static Long getNextId() {
-        return Owner.next_id++;
-    }
-
     private Owner(String cnpj, String corporateName) {
         this.id = getNextId();
         this.cnpj = cnpj;
         this.corporateName = corporateName;
+    }
+
+    //region Getters and Setters
+    public static Long getNextId() {
+        return Owner.next_id++;
     }
 
     public Long getId() {
@@ -42,6 +41,7 @@ public class Owner {
         this.corporateName = corporateName;
     }
 
+    //endregion
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

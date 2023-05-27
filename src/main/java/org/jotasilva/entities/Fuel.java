@@ -17,16 +17,17 @@ public class Fuel {
 
     private static Long next_id = 0L;
 
-    public static Long getNextId() {
-        return Fuel.next_id++;
-    }
-
     private Fuel(Double unitPrice, Double quantity, String invoiceNumber, LocalDate provisionDate) {
         this.id = getNextId();
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.invoiceNumber = invoiceNumber;
         this.provisionDate = provisionDate;
+    }
+
+    //region Getters and Setters
+    public static Long getNextId() {
+        return Fuel.next_id++;
     }
 
     public Long getId() {
@@ -68,7 +69,7 @@ public class Fuel {
     public List<Tank> getTanksFueled() {
         return tanksFueled;
     }
-
+    //endregion
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
