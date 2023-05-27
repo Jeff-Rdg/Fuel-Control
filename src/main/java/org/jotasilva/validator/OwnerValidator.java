@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class OwnerValidator {
     // Métodos de validação
     public static Boolean validateCnpj(String cnpj) {
-        String validateCnpj = cnpj.replaceAll("[^0-9]", "");
+        String validateCnpj = formatCnpj(cnpj);
         if (validateCnpj.length() != 14) {
             return false;
         }
@@ -65,6 +65,9 @@ public class OwnerValidator {
         int verificationDigit2 = (rest < 2) ? 0 : 11 - rest;
 
         return (verificationDigit1 == digit1 && verificationDigit2 == digit2);
+    }
+    public static String formatCnpj(String cnpj){
+        return cnpj.replaceAll("[^0-9]", "");
     }
 
     public static Boolean validateCorporateName(String corporateName) {

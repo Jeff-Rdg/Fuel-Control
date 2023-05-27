@@ -59,7 +59,8 @@ public class Owner {
         boolean isValid = OwnerValidator.isValidOwner(cnpj, corporateName);
 
         if (isValid) {
-            return new Owner(cnpj, corporateName);
+            String registerCnpj = OwnerValidator.formatCnpj(cnpj);
+            return new Owner(registerCnpj, corporateName);
         } else {
             throw new IllegalArgumentException("Parâmetros inválidos para criação do objeto. ");
         }
