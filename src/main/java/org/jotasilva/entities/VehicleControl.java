@@ -1,6 +1,11 @@
 package org.jotasilva.entities;
 
+import org.jotasilva.entities.enums.VehicleType;
+import org.jotasilva.validator.VehicleControlValidator;
+import org.jotasilva.validator.VehicleValidator;
+
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class VehicleControl {
     private Long id;
@@ -10,7 +15,7 @@ public class VehicleControl {
     private LocalDate provisionDate;
     private static Long next_id = 0L;
 
-    public VehicleControl( Vehicle vehicle, int odometer, Double quantityLiters, LocalDate provisionDate) {
+    private VehicleControl(Vehicle vehicle, int odometer, Double quantityLiters, LocalDate provisionDate) {
         this.id = getNextId();
         this.vehicleId = vehicle.getId();
         this.odometer = odometer;
@@ -19,15 +24,18 @@ public class VehicleControl {
     }
 
     //region Getters and Setters
-    public static Long getNextId(){
+    public static Long getNextId() {
         return VehicleControl.next_id++;
     }
-    public Long getId(){
+
+    public Long getId() {
         return this.id;
     }
-    public Long getVehicleId(){
+
+    public Long getVehicleId() {
         return this.vehicleId;
     }
+
     public int getOdometer() {
         return odometer;
     }
@@ -53,4 +61,25 @@ public class VehicleControl {
     }
     // endregion
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VehicleControl that = (VehicleControl) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    public static VehicleControl create(Vehicle vehicle, int odometer, Double quantity, LocalDate date) throws IllegalArgumentException {
+        boolean isValid = VehicleControlValidator.isValidVehicleControl(odometer, quantity);
+        if (isValid) {
+            return new VehicleControl(vehicle, odometer, quantity, date);
+        } else {
+            throw new IllegalArgumentException("Parâmetro inválido para criação do objeto.");
+        }
+    }
 }

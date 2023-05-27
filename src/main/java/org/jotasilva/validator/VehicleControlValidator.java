@@ -11,6 +11,10 @@ public class VehicleControlValidator {
     private LocalDate provisionDate;
     */
 
+    public static Boolean isValidVehicleControl(int odometer, Double quantity){
+        return validateOdometer(odometer) && validateQuantityLiters(quantity);
+    }
+
     public static Boolean validateOdometer(int odometer) {
         // por enquanto validar apenas se o valor é válido.
         return odometer > 0;
