@@ -5,12 +5,12 @@ import java.time.LocalDate;
 public class VehicleControl {
     private Long id;
     private Long vehicleId;
-    private Double odometer;
+    private int odometer;
     private Double quantityLiters;
     private LocalDate provisionDate;
     private static Long next_id = 0L;
 
-    public VehicleControl( Vehicle vehicle, Double odometer, Double quantityLiters, LocalDate provisionDate) {
+    public VehicleControl( Vehicle vehicle, int odometer, Double quantityLiters, LocalDate provisionDate) {
         this.id = getNextId();
         this.vehicleId = vehicle.getId();
         this.odometer = odometer;
@@ -28,11 +28,11 @@ public class VehicleControl {
     public Long getVehicleId(){
         return this.vehicleId;
     }
-    public Double getOdometer() {
+    public int getOdometer() {
         return odometer;
     }
 
-    public void setOdometer(Double odometer) {
+    public void setOdometer(int odometer) {
         this.odometer = odometer;
     }
 

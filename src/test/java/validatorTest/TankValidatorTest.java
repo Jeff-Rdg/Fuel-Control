@@ -1,4 +1,4 @@
-package entitiesTest;
+package validatorTest;
 
 import org.jotasilva.validator.TankValidator;
 import org.junit.jupiter.api.Assertions;

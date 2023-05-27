@@ -1,6 +1,7 @@
 package org.jotasilva.entities;
 
 import org.jotasilva.entities.enums.VehicleType;
+import org.jotasilva.validator.VehicleValidator;
 
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ public class Vehicle {
 
     private static Long next_id = 0L;
 
-    public Vehicle( String plate, VehicleType type, Owner owner) {
+    private Vehicle(String plate, VehicleType type, Owner owner) {
         this.id = getNextId();
         this.plate = plate;
         this.type = type;
@@ -20,7 +21,7 @@ public class Vehicle {
     }
 
     //region Getters and Setters
-    public static Long getNextId(){
+    public static Long getNextId() {
         return Vehicle.next_id++;
     }
 
@@ -51,6 +52,7 @@ public class Vehicle {
     public void setOwner(Owner owner) {
         this.owner = owner;
     }
+
     //endregion
     @Override
     public boolean equals(Object o) {
@@ -63,5 +65,16 @@ public class Vehicle {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public static Vehicle create(String plate, String type, Owner owner) throws IllegalArgumentException {
+        boolean isValid = VehicleValidator.isValidVehicle(plate, type);
+        if (isValid) {
+            // provavelmente mudarei essa lógica para receber diretamente um enum
+            VehicleType vehicleType = VehicleValidator.convertToVehicleType(type);
+            return new Vehicle(plate, vehicleType, owner);
+        } else {
+            throw new IllegalArgumentException("Parâmetro inválido para criação do objeto.");
+        }
     }
 }

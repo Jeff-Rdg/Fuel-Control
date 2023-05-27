@@ -1,4 +1,4 @@
-package entitiesTest;
+package validatorTest;
 
 import org.jotasilva.validator.VehicleValidator;
 import org.junit.jupiter.api.Assertions;
