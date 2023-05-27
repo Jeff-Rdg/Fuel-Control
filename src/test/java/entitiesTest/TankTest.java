@@ -1,6 +1,6 @@
 package entitiesTest;
 
-import org.jotasilva.entities.Tank;
+import org.jotasilva.validator.TankValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +9,7 @@ class TankTest {
     void isValidTank_with_arguments_valids(){
         Double value = 2500.00;
 
-        boolean result = Tank.isValidTank(value);
+        boolean result = TankValidator.isValidTank(value);
 
         Assertions.assertTrue(result);
     }
@@ -18,7 +18,7 @@ class TankTest {
     void isValidTank_with_arguments_invalids(){
         Double value = -2500.00;
 
-        boolean result = Tank.isValidTank(value);
+        boolean result = TankValidator.isValidTank(value);
 
         Assertions.assertFalse(result);
     }
@@ -27,7 +27,7 @@ class TankTest {
     void isValidTank_with_arguments_greater_than_established(){
         Double value = 50000.01;
 
-        boolean result = Tank.isValidTank(value);
+        boolean result = TankValidator.isValidTank(value);
 
         Assertions.assertFalse(result);
     }

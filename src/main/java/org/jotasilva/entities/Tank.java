@@ -1,22 +1,26 @@
 package org.jotasilva.entities;
 
+import org.jotasilva.validator.TankValidator;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Tank {
     private Long id;
     private Double capacity;
     private Double fuelQuantity = 0.0;
-    private List<FuelTank> supplies = new ArrayList<>();
+    private List<Vehicle> vehiclesFueled = new ArrayList<>();
 
     private static Long next_id = 0L;
-    public static Long getNextId(){
-        return Tank.next_id++;
-    }
 
     private Tank(Double capacity) {
         this.id = getNextId();
         this.capacity = capacity;
+    }
+    // region Getters and Setters
+    public static Long getNextId(){
+        return Tank.next_id++;
     }
 
     public Long getId() {
@@ -39,12 +43,27 @@ public class Tank {
         this.fuelQuantity = fuelQuantity;
     }
 
-    public static Boolean isValidTank(Double capacity){
-        return capacity > 0.0 && capacity < 50000.00;
+    public List<Vehicle> getVehiclesFueled() {
+        return vehiclesFueled;
+    }
+    // endregion
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tank tank = (Tank) o;
+        return Objects.equals(id, tank.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     public static Tank create(Double capacity) throws IllegalArgumentException{
-        boolean isValid = isValidTank(capacity);
+        boolean isValid = TankValidator.isValidTank(capacity);
         if(isValid){
             return new Tank(capacity);
         }else {

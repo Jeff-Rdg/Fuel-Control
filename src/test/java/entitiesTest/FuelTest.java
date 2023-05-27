@@ -1,6 +1,7 @@
 package entitiesTest;
 
 import org.jotasilva.entities.Fuel;
+import org.jotasilva.validator.FuelValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,7 @@ class FuelTest {
         // preparação
         String invoiceNumber = "aa-bbbbbbbb";
         // execução
-        boolean result = Fuel.validateInvoiceNumber(invoiceNumber);
+        boolean result = FuelValidator.validateInvoiceNumber(invoiceNumber);
         // verificação
         Assertions.assertFalse(result);
 
@@ -23,7 +24,7 @@ class FuelTest {
         // preparação
         String invoiceNumber = "12a-123456789";
         // execução
-        boolean result = Fuel.validateInvoiceNumber(invoiceNumber);
+        boolean result = FuelValidator.validateInvoiceNumber(invoiceNumber);
         // verificação
         Assertions.assertFalse(result);
 
@@ -34,7 +35,7 @@ class FuelTest {
         // preparação
         String invoiceNumber = "123-123456789";
         // execução
-        boolean result = Fuel.validateInvoiceNumber(invoiceNumber);
+        boolean result = FuelValidator.validateInvoiceNumber(invoiceNumber);
         // verificação
         Assertions.assertTrue(result);
 
@@ -46,7 +47,7 @@ class FuelTest {
         Double unitPrice = -2.0;
         Double quantity = -5000.00;
 
-        boolean result = Fuel.isPositive(unitPrice) && Fuel.isPositive(quantity);
+        boolean result = FuelValidator.isPositive(unitPrice) && FuelValidator.isPositive(quantity);
 
         Assertions.assertFalse(result);
     }
@@ -56,7 +57,7 @@ class FuelTest {
         Double unitPrice = 2.0;
         Double quantity = 5000.00;
 
-        boolean result = Fuel.isPositive(unitPrice) && Fuel.isPositive(quantity);
+        boolean result = FuelValidator.isPositive(unitPrice) && FuelValidator.isPositive(quantity);
 
         Assertions.assertTrue(result);
     }
@@ -68,7 +69,7 @@ class FuelTest {
         Double quantity = 5000.00;
         String invoiceNumber = "123-123456789";
 
-        boolean result = Fuel.isValidFuel(unitPrice, quantity, invoiceNumber);
+        boolean result = FuelValidator.isValidFuel(unitPrice, quantity, invoiceNumber);
 
         Assertions.assertTrue(result);
     }
@@ -79,9 +80,10 @@ class FuelTest {
         Double quantity = -5000.00;
         String invoiceNumber = "123-12345678";
 
-        boolean result = Fuel.isValidFuel(unitPrice, quantity, invoiceNumber);
+        boolean result = FuelValidator.isValidFuel(unitPrice, quantity, invoiceNumber);
 
         Assertions.assertFalse(result);
     }
+
 
 }
