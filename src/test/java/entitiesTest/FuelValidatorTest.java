@@ -1,11 +1,10 @@
 package entitiesTest;
 
-import org.jotasilva.entities.Fuel;
 import org.jotasilva.validator.FuelValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class FuelTest {
+class FuelValidatorTest {
 
     // validateInvoiceNumber
     @Test

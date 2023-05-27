@@ -4,7 +4,7 @@ import org.jotasilva.validator.TankValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class TankTest {
+class TankValidatorTest {
     @Test
     void isValidTank_with_arguments_valids(){
         Double value = 2500.00;

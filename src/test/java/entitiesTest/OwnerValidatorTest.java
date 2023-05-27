@@ -4,7 +4,7 @@ import org.jotasilva.validator.OwnerValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class OwnerTest {
+class OwnerValidatorTest {
     @Test
     void validateCnpj_if_is_valid() {
         String cnpj = "58577114000189";
