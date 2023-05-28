@@ -2,7 +2,6 @@ package org.jotasilva.entities;
 
 import org.jotasilva.entities.enums.VehicleType;
 import org.jotasilva.validator.VehicleValidator;
-
 import java.util.Objects;
 
 public class Vehicle {
@@ -11,7 +10,7 @@ public class Vehicle {
     private VehicleType type;
     private Owner owner;
 
-    private static Long next_id = 0L;
+    private static Long next_id = 1L;
 
     private Vehicle(String plate, VehicleType type, Owner owner) {
         this.id = getNextId();

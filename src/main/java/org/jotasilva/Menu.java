@@ -1,11 +1,10 @@
 package org.jotasilva;
 
 import org.jotasilva.entities.Owner;
-
 import java.util.Scanner;
 
 public class Menu {
-    static void exibirMenu(){
+    static void exibirMenu() {
         System.out.println("-------------------------------------------");
         System.out.println("Informe a Operação que deseja realizar: ");
         System.out.println("1 - Cadastrar Fornecedor. ");
@@ -18,11 +17,11 @@ public class Menu {
         actions();
     }
 
-    static void actions(){
+    static void actions() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Opção desejada: ");
         int value = scanner.nextInt();
-        switch (value){
+        switch (value) {
             case 0:
                 System.out.println("Até breve!");
                 break;
@@ -36,10 +35,11 @@ public class Menu {
         scanner.close();
     }
 
-    static void registerOwner(){
+    static void registerOwner() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("-------------------------------------------");
         System.out.println("Registrar Fornecedor:");
+
         System.out.print("Informe o CNPJ: ");
         String cnpj = scanner.nextLine();
 
@@ -47,8 +47,12 @@ public class Menu {
         String corporateName = scanner.nextLine();
 
         Owner owner = Owner.create(cnpj, corporateName);
-        //System.out.println(owner.getCnpj());
+        // Após isso, envia para classe de serviço para ocorrer a persistencia dos dados.
+
+        // teste para verificar os dados do owner
+        System.out.println(owner);
         System.out.println();
+
         exibirMenu();
         scanner.close();
     }

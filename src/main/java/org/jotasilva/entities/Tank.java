@@ -1,7 +1,6 @@
 package org.jotasilva.entities;
 
 import org.jotasilva.validator.TankValidator;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -12,7 +11,7 @@ public class Tank {
     private Double fuelQuantity = 0.0;
     private List<Vehicle> vehiclesFueled = new ArrayList<>();
 
-    private static Long next_id = 0L;
+    private static Long next_id = 1L;
 
     private Tank(Double capacity) {
         this.id = getNextId();

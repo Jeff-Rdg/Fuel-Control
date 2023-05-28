@@ -1,9 +1,6 @@
 package org.jotasilva.entities;
 
-import org.jotasilva.entities.enums.VehicleType;
 import org.jotasilva.validator.VehicleControlValidator;
-import org.jotasilva.validator.VehicleValidator;
-
 import java.time.LocalDate;
 import java.util.Objects;
 

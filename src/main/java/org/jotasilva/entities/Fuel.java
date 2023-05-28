@@ -1,7 +1,6 @@
 package org.jotasilva.entities;
 
 import org.jotasilva.validator.FuelValidator;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ public class Fuel {
     private LocalDate provisionDate;
     private List<Tank> tanksFueled = new ArrayList<>();
 
-    private static Long next_id = 0L;
+    private static Long next_id = 1L;
 
     private Fuel(Double unitPrice, Double quantity, String invoiceNumber, LocalDate provisionDate) {
         this.id = getNextId();

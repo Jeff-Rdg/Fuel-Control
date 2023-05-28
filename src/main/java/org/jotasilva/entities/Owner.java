@@ -1,14 +1,13 @@
 package org.jotasilva.entities;
 
 import org.jotasilva.validator.OwnerValidator;
-
 import java.util.Objects;
 
 public class Owner {
     private Long id;
     private String cnpj;
     private String corporateName;
-    private static Long next_id = 0L;
+    private static Long next_id = 1L;
 
     private Owner(String cnpj, String corporateName) {
         this.id = getNextId();
@@ -56,13 +55,23 @@ public class Owner {
     }
 
     public static Owner create(String cnpj, String corporateName) throws IllegalArgumentException {
-        boolean isValid = OwnerValidator.isValidOwner(cnpj, corporateName);
+        String registerCnpj = OwnerValidator.formatCnpj(cnpj);
+        boolean isValid = OwnerValidator.isValidOwner(registerCnpj, corporateName);
+        // precisa-se verificar se já existem owner registrados com o cnpj informado - Verificar na service
 
         if (isValid) {
-            String registerCnpj = OwnerValidator.formatCnpj(cnpj);
             return new Owner(registerCnpj, corporateName);
         } else {
             throw new IllegalArgumentException("Parâmetros inválidos para criação do objeto. ");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "id=" + id +
+                ", cnpj='" + cnpj + '\'' +
+                ", corporateName='" + corporateName + '\'' +
+                '}';
     }
 }

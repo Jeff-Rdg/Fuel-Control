@@ -6,28 +6,26 @@ import java.util.regex.Pattern;
 public class OwnerValidator {
     // Métodos de validação
     public static Boolean validateCnpj(String cnpj) {
-        String validateCnpj = formatCnpj(cnpj);
-        if (validateCnpj.length() != 14) {
+        if (cnpj.length() != 14) {
             return false;
         }
 
         // verificar se digitos são iguais
-        if (validateCnpj.matches("(\\d)\\1{13}$")) {
+        if (cnpj.matches("(\\d)\\1{13}$")) {
             return false;
         }
 
         // digitos verificadores do cpnj
-        int digit1 = Character.getNumericValue(validateCnpj.charAt(12));
-        int digit2 = Character.getNumericValue(validateCnpj.charAt(13));
+        int digit1 = Character.getNumericValue(cnpj.charAt(12));
+        int digit2 = Character.getNumericValue(cnpj.charAt(13));
 
         // calcular digitos verificadores
         int sum = 0;
         int var1 = 5;
-
         int index = 1;
 
         while (index <= 4) {
-            sum += Integer.parseInt(validateCnpj.substring(index - 1, index)) * var1;
+            sum += Integer.parseInt(cnpj.substring(index - 1, index)) * var1;
             index++;
             var1--;
         }
@@ -35,7 +33,7 @@ public class OwnerValidator {
         int var2 = 9;
 
         while (index <= 12) {
-            sum += Integer.parseInt(validateCnpj.substring(index - 1, index)) * var2;
+            sum += Integer.parseInt(cnpj.substring(index - 1, index)) * var2;
             index++;
             var2--;
         }
@@ -48,7 +46,7 @@ public class OwnerValidator {
         var1 = 6;
 
         while (index <= 5) {
-            sum += Integer.parseInt(validateCnpj.substring(index - 1, index)) * var1;
+            sum += Integer.parseInt(cnpj.substring(index - 1, index)) * var1;
             index++;
             var1--;
         }
@@ -56,7 +54,7 @@ public class OwnerValidator {
         var2 = 9;
 
         while (index <= 13) {
-            sum += Integer.parseInt(validateCnpj.substring(index - 1, index)) * var2;
+            sum += Integer.parseInt(cnpj.substring(index - 1, index)) * var2;
             index++;
             var2--;
         }
