@@ -68,4 +68,13 @@ public class Tank {
             throw new IllegalArgumentException("Parâmetro inválido para criação do objeto.");
         }
     }
+
+    @Override
+    public String toString() {
+        return "Tank{" +
+                "id=" + id +
+                ", capacity=" + capacity +
+                ", fuelQuantity=" + fuelQuantity +
+                '}';
+    }
 }

@@ -1,6 +1,8 @@
 package org.jotasilva;
 
 import org.jotasilva.entities.Owner;
+import org.jotasilva.entities.Tank;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -28,6 +30,9 @@ public class Menu {
             case 1:
                 registerOwner();
                 break;
+            case 2:
+                registerTank();
+                break;
             default:
                 System.out.println("Operação inválida, tente novamente");
                 actions();
@@ -51,6 +56,25 @@ public class Menu {
 
         // teste para verificar os dados do owner
         System.out.println(owner);
+        System.out.println();
+
+        exibirMenu();
+        scanner.close();
+    }
+
+    static void registerTank() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("-------------------------------------------");
+        System.out.println("Registrar Tanque de Abastecimento:");
+
+        System.out.print("Informe a capacidade do tanque em Litros: ");
+        Double capacity = scanner.nextDouble();
+
+
+        Tank tank = Tank.create(capacity);
+
+        // teste para verificar os dados do tank
+        System.out.println(tank);
         System.out.println();
 
         exibirMenu();
